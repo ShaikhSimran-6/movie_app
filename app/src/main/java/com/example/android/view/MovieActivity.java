@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.android.AndroidUtil;
 import com.example.android.R;
 import com.example.android.databinding.ActivityMovieBinding;
 import com.example.android.model.Movie;
@@ -21,19 +22,18 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 //
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activityMovieBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie);
 
-        Intent i = getIntent();
 
-        if (i != null){
-            movie = i.getParcelableExtra("movie");
+
+
+            movie = AndroidUtil.getModelFromIntent(getIntent());
             activityMovieBinding.setMovie(movie);
-            getSupportActionBar().setTitle((movie.getTitle()));
+//          getSupportActionBar().setTitle((movie.getTitle()));
         }
 
-    }
+
 }
