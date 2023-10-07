@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.AndroidUtil;
 import com.example.android.R;
 import com.example.android.databinding.MovieListItemBinding;
 import com.example.android.model.Movie;
@@ -66,14 +67,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             int position = getAdapterPosition();
 
             if (position != RecyclerView.NO_POSITION){
-                Movie selectedMovie = movieArrayList.get(position);
-//                Intent intent = new Intent(context, MovieActivity.class);
-//                intent.putExtra("movie",  selectedMovie);
-//                context.startActivity(intent);
 
-//                Intent i = new Intent(context, MovieActivity.class);
-//                i.putExtra("movie", selectedMovie);
-//                context.startActivity(i);
+
+
+                Movie selectedMovie=movieArrayList.get(position);
+
+
+                Intent i= new Intent(context, MovieActivity.class);
+                AndroidUtil.passModelIntent(i,selectedMovie);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
             }
         });
     }
